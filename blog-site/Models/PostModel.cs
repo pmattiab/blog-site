@@ -7,9 +7,9 @@ namespace blog_site.Models
 {
     public class PostModel
     {
-        public int userId { get; set; }
-        public int id { get; set; }
-        public string title { get; set; }
-        public string body { get; set; }
+        public int UserId { get; set; }
+        public int PostId { get; set; }
+        public string Titolo { get; set; }
+        public string Corpo { get; set; }
     }
 }

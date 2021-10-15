@@ -4,18 +4,47 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using blog_site.Models;
-using blog_site.BusinessLogic;
+using BlogBusinessLogic.Service;
 
 namespace blog_site.Controllers
 {
     public class PostController : Controller
     {
-        // GET: Post
+        private PostService service;
+
+        public PostController()
+        {
+            this.service = new PostService(BlogBusinessLogic.Types.EnumFonte.Json);
+        }
+
+
+
         public ActionResult List()
         {
-            List<PostModel> postList = new PostService().ListFromJson();
+            PostListModel model = new PostListModel();
 
-            return View(postList)
+
+            model.Items = this.service
+                                    .GetAll()
+                                    .Select(x => new PostModel()
+                                    {
+                                        PostId = x.Id,
+                                        UserId = x.UserId,
+                                        Titolo = x.Title,
+                                        Corpo = x.Body
+                                    })
+                                    .ToList();
+
+
+            return View(model);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            PostDetailModel model = new PostDetailModel();
+
+
+            return View(model);
         }
     }
 }

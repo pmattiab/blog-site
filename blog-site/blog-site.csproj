@@ -107,7 +107,6 @@
     <Compile Include="BusinessLogic\JsonDeserializer.cs" />
     <Compile Include="BusinessLogic\JsonReader.cs" />
     <Compile Include="BusinessLogic\NavbarService.cs" />
-    <Compile Include="BusinessLogic\PostService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavbarController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -115,6 +114,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\NavbarModel.cs" />
+    <Compile Include="Models\PostDetailModel.cs" />
+    <Compile Include="Models\PostListModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -131,6 +132,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\SamplePost.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Post\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,6 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlogBusinessLogic\BlogBusinessLogic.csproj">
+      <Project>{9e5cb7eb-7b29-4134-8fec-7424c759639c}</Project>
+      <Name>BlogBusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
