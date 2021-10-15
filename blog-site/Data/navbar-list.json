@@ -1,0 +1,18 @@
+[
+  {
+    "label": "Home",
+    "url": "/"
+  },
+  {
+    "label": "About",
+    "url": "/home/about"
+  },
+  {
+    "label": "Simple Post",
+    "url": "/home/simple-post"
+  },
+  {
+    "label": "Contact",
+    "url": "/home/contact"
+  }
+]
