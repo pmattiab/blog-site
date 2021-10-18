@@ -24,8 +24,10 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
 
             <!-- Post List-->
-            
-            @Html.Partial("SinglePost", Model.Posts)
+            @foreach (var post in Model.Posts)
+            {
+                @Html.Partial("SinglePost", post)
+            }
 
             <!-- Pager-->
             <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>

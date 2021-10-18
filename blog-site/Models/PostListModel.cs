@@ -8,7 +8,6 @@ namespace blog_site.Models
 {
     public class PostListModel
     {
-        public List<Post> Posts { get; set; } = new List<Post>();
-
+        public List<PostModel> Posts { get; set; } = new List<PostModel>();
     }
 }

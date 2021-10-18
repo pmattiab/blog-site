@@ -16,7 +16,32 @@ namespace blog_site.Controllers
         {
             PostListModel model = new PostListModel();
 
-            model.Posts = new PostService().GetAll();
+            foreach (Post post in new PostService().GetAll())
+            {
+                User user = new UserService().GetAll().FirstOrDefault(x => x.Id == post.UserId);
+
+                PostModel tmpModel = new PostModel();
+
+                tmpModel.PostId = post.Id;
+                tmpModel.Titolo = post.Title;
+                tmpModel.Contenuto = post.Body;
+                tmpModel.UserId = post.UserId;
+
+                model.Posts.Add(tmpModel);
+
+            }
+
+            model.Posts = new PostService().GetAll().Select(oldModel => new PostModel()
+            {
+                PostId = oldModel.Id,
+                Titolo = oldModel.Title,
+                Contenuto = oldModel.Body,
+                PostUser = new UserService().GetAll().Where(x => x.Id == oldModel.Id).Select(tmpUser => new UserModel()
+                {
+                    UserId = tmpUser.Id,
+                    Nome = tmpUser.Name,
+
+                }).FirstOrDefault()}).ToList();
 
             return View(model);
         }

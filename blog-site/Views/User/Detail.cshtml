@@ -11,7 +11,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
                     <div class="mb-3">
-                        <span><b>Name: </b><br />@Model.User.Name</span>
+                        <span><b>Nome: </b><br />@Model.User.Nome</span>
                     </div>
                     <div class="mb-3">
                         <span><b>Username: </b><br />@Model.User.Username</span>
@@ -20,12 +20,14 @@
                         <span><b>Email: </b><br />@Model.User.Email</span>
                     </div>
                     <div class="mb-3">
-                        <span><b>Phone number: </b><br />@Model.User.Phone</span>
+                        <span><b>Numero telefono: </b><br />@Model.User.Telefono</span>
                     </div>
                     <div class="mb-3">
-                        <span><b>Website: </b><br /><em>www.@Model.User.Website</em></span>
-                    </div>                    
-
+                        <span><b>Indirizzo: </b><br />Via @Model.User.Via - @Model.User.Città @Model.User.CodicePostale</span>
+                    </div>
+                    <div class="mb-3">
+                        <span><b>Sito web: </b><br /><em>www.@Model.User.Sito</em></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,7 +44,10 @@
             </div>
 
             <!-- Post List-->
-            @Html.Partial("../Post/SinglePost")
+            @foreach (var post in Model.Posts)
+            {
+                @Html.Partial("../Post/SinglePost", post)
+            }
 
         </div>
     </div>

@@ -8,6 +8,6 @@ namespace blog_site.Models
 {
     public class UserListModel
     {
-        public List<User> Users { get; set; } = new List<User>();
+        public List<UserModel> Users { get; set; } = new List<UserModel>();
     }
 }

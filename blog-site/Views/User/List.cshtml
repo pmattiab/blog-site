@@ -27,8 +27,8 @@
             {
                 <!-- Post preview-->
                 <div>
-                    <a href="/User/Detail/@user.Id">
-                        <span><b>Name: </b> @user.Name</span><br />
+                    <a href=@Url.Action("Detail", "User", new { id = user.UserId})>
+                        <span><b>Name: </b> @user.Nome</span><br />
                         <span><b>Username:</b> @user.Username</span><br />
                     </a>
                 </div>

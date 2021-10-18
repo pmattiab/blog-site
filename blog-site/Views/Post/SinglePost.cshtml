@@ -1,15 +1,13 @@
-﻿
+﻿@model blog_site.Models.PostModel
+
 @{
     ViewBag.Title = "SinglePost";
 }
 
-@foreach (var post in Model.Posts)
-{
-    <!-- Post preview-->
-    <div class="post-preview">
-        <h3 class="post-title text-capitalize">@post.Title</h3>
-        <div class="post-subtitle"><a href="/Post/Detail/@post.Id">Leggi l'articolo</a></div>
-    </div>
-    <!-- Divider-->
-    <hr class="my-4" />
-}
+<!-- Post preview-->
+<div class="post-preview">
+    <h3 class="post-title text-capitalize">@Model.Titolo</h3>
+    <div class="post-subtitle"><a href=@Url.Action("Detail", "Post", new { id = Model.PostId})>Leggi l'articolo</a></div>
+</div>
+<!-- Divider-->
+<hr class="my-4" />

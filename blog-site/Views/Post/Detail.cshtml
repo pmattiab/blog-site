@@ -11,7 +11,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
                     <h1 class="text-capitalize">@Model.Post.Title</h1>
-                    <span class="meta">Scritto da <a href="/User/Detail/@Model.User.Id">@Model.User.Name</a></span>
+                    <span class="meta">Scritto da <a href=@Url.Action("Detail", "User", new {id = Model.User.Id })>@Model.User.Name</a></span>
                 </div>
             </div>
         </div>

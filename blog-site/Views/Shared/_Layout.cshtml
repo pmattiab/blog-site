@@ -17,10 +17,20 @@
     </head>
     <body>
 
-        @Html.Partial("~/Views/Shared/_NavBar.cshtml")
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href=@Url.Action("Index", "Home")>Blog</a>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        @Html.Partial("~/Views/Shared/_NavBar.cshtml")
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
         <div class="container body-content">
-            
+
             @RenderBody()
 
             @Html.Partial("~/Views/Shared/_Footer.cshtml")

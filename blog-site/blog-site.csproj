@@ -106,27 +106,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogic\JsonDeserializer.cs" />
     <Compile Include="BusinessLogic\JsonReader.cs" />
-    <Compile Include="BusinessLogic\NavbarService.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NavbarController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CommentListModel.cs" />
-    <Compile Include="Models\NavbarModel.cs" />
     <Compile Include="Models\PostDetailModel.cs" />
     <Compile Include="Models\PostListModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\UserDetailModel.cs" />
     <Compile Include="Models\UserListModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="Data\navbar-list.json" />
     <Content Include="Data\posts.json" />
     <Content Include="Data\users.json" />
     <Content Include="Data\comments.json" />

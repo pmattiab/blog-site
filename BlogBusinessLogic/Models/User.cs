@@ -14,5 +14,13 @@ namespace BlogBusinessLogic.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Website { get; set; }
+        public Address Address { get; set; }
+    }
+
+    public class Address
+    {
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string ZipCode { get; set; }
     }
 }

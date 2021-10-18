@@ -9,7 +9,7 @@ namespace blog_site.Models
 {
     public class UserDetailModel
     {
-        public User User { get; set; } = new User();
-        public List<Post> Posts { get; set; }
+        public UserModel User { get; set; } = new UserModel();
+        public List<PostModel> Posts { get; set; }
     }
 }
