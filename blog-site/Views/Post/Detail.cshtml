@@ -1,0 +1,58 @@
+﻿@model blog_site.Models.PostDetailModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('https://picsum.photos/640/360') ">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1 class="text-capitalize">@Model.Post.Title</h1>
+                    <span class="meta">Scritto da <a href="/User/Detail/@Model.User.Id">@Model.User.Name</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h3>Testo:</h3>
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7 text-capitalize">
+                <p>@Model.Post.Body</p>
+                <hr />
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- Commenti -->
+<div class="container px-4 px-lg-5">
+
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <h5>Commenti:</h5>
+        </div>
+    </div>
+
+    <div class="row gx-4 gx-lg-5 justify-content-center" style="font-size: 17px;">
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="col-md-10 col-lg-8 col-xl-7 mb-4">
+                <span class="text-capitalize"><em><b>@comment.Name</b></em></span>
+                <p class="text-capitalize text-secondary" style="padding: 0; margin: 0;"><em>@comment.Body</em></p>
+                <span style="font-size: 15px;">da: @comment.Email</span>
+            </div>
+        }
+    </div>
+
+</div>

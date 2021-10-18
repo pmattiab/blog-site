@@ -3,38 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using blog_site.Models;
+using BlogBusinessLogic.Models;
 using BlogBusinessLogic.Service;
+using blog_site.Models;
 
 namespace blog_site.Controllers
 {
     public class PostController : Controller
     {
-        private PostService service;
-
-        public PostController()
-        {
-            this.service = new PostService(BlogBusinessLogic.Types.EnumFonte.Json);
-        }
-
-
-
+        // GET: Post
         public ActionResult List()
         {
             PostListModel model = new PostListModel();
 
-
-            model.Items = this.service
-                                    .GetAll()
-                                    .Select(x => new PostModel()
-                                    {
-                                        PostId = x.Id,
-                                        UserId = x.UserId,
-                                        Titolo = x.Title,
-                                        Corpo = x.Body
-                                    })
-                                    .ToList();
-
+            model.Posts = new PostService().GetAll();
 
             return View(model);
         }
@@ -43,6 +25,11 @@ namespace blog_site.Controllers
         {
             PostDetailModel model = new PostDetailModel();
 
+            model.Post = new PostService().GetAll().FirstOrDefault(x => x.Id == id);
+
+            model.User = new UserService().GetAll().FirstOrDefault(y => y.Id == model.Post.UserId);
+
+            model.Comments = new CommentService().GetAll().FindAll(z => z.PostId == id);
 
             return View(model);
         }

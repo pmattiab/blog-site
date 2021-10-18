@@ -1,0 +1,49 @@
+﻿@model blog_site.Models.UserDetailModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<!-- Page Header-->
+<header class="masthead">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <div class="mb-3">
+                        <span><b>Name: </b><br />@Model.User.Name</span>
+                    </div>
+                    <div class="mb-3">
+                        <span><b>Username: </b><br />@Model.User.Username</span>
+                    </div>
+                    <div class="mb-3">
+                        <span><b>Email: </b><br />@Model.User.Email</span>
+                    </div>
+                    <div class="mb-3">
+                        <span><b>Phone number: </b><br />@Model.User.Phone</span>
+                    </div>
+                    <div class="mb-3">
+                        <span><b>Website: </b><br /><em>www.@Model.User.Website</em></span>
+                    </div>                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+
+            <div class="site-heading mb-5">
+                <h2>Post scritti da @Model.User.Username:</h2>
+            </div>
+
+            <!-- Post List-->
+            @Html.Partial("../Post/SinglePost")
+
+        </div>
+    </div>
+</div>

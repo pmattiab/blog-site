@@ -7,11 +7,9 @@ using BlogBusinessLogic.Models;
 
 namespace blog_site.Models
 {
-    public class PostDetailModel
+    public class UserDetailModel
     {
-        public Post Post { get; set; } = new Post();
         public User User { get; set; } = new User();
-        public List<Comment> Comments { get; set; }
-
+        public List<Post> Posts { get; set; }
     }
 }

@@ -6,9 +6,8 @@ using BlogBusinessLogic.Models;
 
 namespace blog_site.Models
 {
-    public class PostListModel
+    public class CommentListModel
     {
-        public List<Post> Posts { get; set; } = new List<Post>();
-
+        public List<Comment> Items { get; set; } = new List<Comment>();
     }
 }

@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace BlogBusinessLogic.Service
 {
-    public class PostService
+    public class CommentService
     {
         private EnumFonte fonte;
 
-        public PostService(EnumFonte _fonte = EnumFonte.Json)
+        public CommentService(EnumFonte _fonte = EnumFonte.Json)
         {
             this.fonte = _fonte;
         }
 
 
-        public List<Post> GetAll()
+        public List<Comment> GetAll()
         {
-            List<Post> resList = null;
+            List<Comment> resList = null;
 
             switch (this.fonte)
             {
@@ -39,20 +39,19 @@ namespace BlogBusinessLogic.Service
                     break;
             }
 
-            if (resList == null) resList = new List<Post>();
+            if (resList == null) resList = new List<Comment>();
 
             return resList;
         }
 
 
-        private List<Post> ListFromJson()
+        private List<Comment> ListFromJson()
         {
-            string jsonPath = "~/Data/posts.json";
+            string jsonPath = "~/Data/comments.json";
             string jsonContent = new JsonReader().ReadJson(jsonPath);
-            List<Post> result = new JsonDeserializer().DeserializeJson<List<Post>>(jsonContent);
+            List<Comment> result = new JsonDeserializer().DeserializeJson<List<Comment>>(jsonContent);
 
             return result;
         }
-
     }
 }
