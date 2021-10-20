@@ -113,6 +113,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BackendPostEditModel.cs" />
     <Compile Include="Models\CommentListModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\PostDetailModel.cs" />
@@ -143,7 +144,6 @@
     <Content Include="Views\Post\SinglePost.cshtml" />
     <Content Include="Views\BackendPost\List.cshtml" />
     <Content Include="Views\BackendPost\Detail.cshtml" />
-    <Content Include="Views\BackendPost\Add.cshtml" />
     <Content Include="Views\BackendPost\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

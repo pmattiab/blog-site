@@ -49,7 +49,7 @@ namespace BlogBusinessLogic.Service
 
         public Post GetSinglePost(int id)
         {
-            return new PostService().GetAll().FirstOrDefault(x => x.Id == id);
+            return this.GetAll().FirstOrDefault(x => x.Id == id);
         }
 
         private List<Post> ListFromJson()

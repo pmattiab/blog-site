@@ -1,7 +1,7 @@
-﻿@model blog_site.Models.PostDetailModel
+﻿@model blog_site.Models.BackendPostEditModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = Model.Id > 0 ? "Modifica post" : "Nuovo post";
 }
 
 <!-- Page Header-->
@@ -9,22 +9,22 @@
 </header>
 
 <div class="container">
-    @using (Html.BeginForm("Edit", "BackendPost", FormMethod.Post))
+    @using (Html.BeginForm("SalvaPost", "BackendPost", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
-        @Html.HiddenFor(model => model.Post.PostId)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-floating mb-5">
-            @Html.TextBoxFor(model => model.Post.Titolo, new { @class = "form-control" })
-            @Html.LabelFor(model => model.Post.Titolo, "Titolo del post", new { @class = "col-md-2 control-label" })
-            @Html.ValidationMessageFor(model => model.Post.Titolo)
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control", required = "true" })
+            @Html.LabelFor(model => model.Title, "Titolo del post", new { @class = "col-md-2 control-label"})
+            @Html.ValidationMessageFor(model => model.Title)
         </div>
 
         <div class="form-floating mb-5">
-            @Html.TextAreaFor(model => model.Post.Contenuto, new { @class = "form-control" })
-            @Html.LabelFor(model => model.Post.Contenuto, "Contenuto del post", new { @class = "col-md-2 control-label" })
-            @Html.ValidationMessageFor(model => model.Post.Contenuto)
+            @Html.TextAreaFor(model => model.Body,new { @class = "form-control" })
+            @Html.LabelFor(model => model.Body, "Contenuto del post", new { @class = "col-md-2 control-label" })
+            @Html.ValidationMessageFor(model => model.Body)
         </div>
 
         <div>

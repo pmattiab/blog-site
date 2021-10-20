@@ -10,18 +10,27 @@ namespace blog_site.Controllers
 {
     public class BackendPostController : Controller
     {
+        private PostService servicePost;
+        private UserService serviceUser;
+
+        public BackendPostController()
+        {
+            servicePost = new PostService(BlogBusinessLogic.Types.EnumFonte.Json);
+            serviceUser = new UserService(BlogBusinessLogic.Types.EnumFonte.Json);
+        }
+
         // GET: BackendPost
 
         public ActionResult List()
         {
             PostListModel model = new PostListModel();
 
-            model.Posts = new PostService().GetAll().Select(oldModel => new PostModel()
+            model.Posts = servicePost.GetAll().Select(oldModel => new PostModel()
             {
                 PostId = oldModel.Id,
                 Titolo = oldModel.Title,
                 Contenuto = oldModel.Body,
-                PostUser = new UserService().GetAll().Where(x => x.Id == oldModel.UserId).Select(tmpUser => new UserModel()
+                PostUser = serviceUser.GetAll().Where(x => x.Id == oldModel.UserId).Select(tmpUser => new UserModel()
                 {
                     UserId = tmpUser.Id,
                     Nome = tmpUser.Name,
@@ -37,7 +46,7 @@ namespace blog_site.Controllers
         {
             PostDetailModel model = new PostDetailModel();
 
-            model.Post = new PostService().GetAll().Where(x => x.Id == id).Select(tmpPost => new PostModel()
+            model.Post = servicePost.GetAll().Where(x => x.Id == id).Select(tmpPost => new PostModel()
             {
                 PostId = tmpPost.Id,
                 Titolo = tmpPost.Title,
@@ -55,35 +64,50 @@ namespace blog_site.Controllers
             return View(model);
         }
 
-        public ActionResult Add(int id = 0)
+        public ActionResult Add()
         {
-            if (ModelState.IsValid)
-            {
+            BackendPostEditModel model = new BackendPostEditModel();
 
-            }
-            return View(new PostModel());
+
+            return View("Edit",model);
         }
 
         public ActionResult Edit(int id)
         {
-            PostDetailModel model = new PostDetailModel();
+            BackendPostEditModel model = new BackendPostEditModel();
 
-            model.Post = new PostService().GetAll().Where(x => x.Id == id).Select(tmpPost => new PostModel()
-            {
-                PostId = tmpPost.Id,
-                Titolo = tmpPost.Title,
-                Contenuto = tmpPost.Body,
-                PostUser = new UserService().GetAll().Where(x => x.Id == tmpPost.UserId).Select(tmpUser => new UserModel()
-                {
-                    UserId = tmpUser.Id,
-                    Nome = tmpUser.Name
+            var dbPost = servicePost.GetSinglePost(id);
 
-                }).FirstOrDefault()
+            if (dbPost == null || dbPost.Id < 0) return RedirectToAction("List");
 
-            }).FirstOrDefault();
+            model.Id = dbPost.Id;
+            model.Title = dbPost.Title;
+            model.Body = dbPost.Body;
 
             return View(model);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SalvaPost(BackendPostEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                return RedirectToAction("List");
+            }
+
+            return View("Edit", model);
+
+            //salvo
+            // new PostService().InserOrUpdate()
+
+
+        }
+
+
+
 
         public ActionResult Delete(int id)
         {
