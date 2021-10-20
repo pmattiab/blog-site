@@ -1,0 +1,35 @@
+﻿@model blog_site.Models.PostDetailModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<!-- Page Header-->
+<header class="masthead" style="background-color:gray; padding:45px;">
+</header>
+
+<div class="container text-capitalize">
+
+    <div class="text-center">
+        <h2>Post</h2>
+    </div>
+    
+    <div class="mb-4">
+        <h6>Titolo:<br />@Model.Post.Titolo</h6>
+    </div>
+
+    <div>
+        <h6>Contenuto:</h6>
+        <p style="font-size:15px; margin:0; padding:0;">@Model.Post.Contenuto</p>
+    </div>
+
+    <hr />
+
+    <div>
+        <h5>Autore</h5>
+        <h6>Nome: @Model.User.Nome</h6>
+        <h6>Username: @Model.User.Username</h6>
+    </div>
+
+</div>
+

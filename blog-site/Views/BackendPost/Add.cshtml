@@ -1,0 +1,34 @@
+﻿@model blog_site.Models.PostModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<!-- Page Header-->
+<header class="masthead" style="background-color:gray; padding:45px;">
+</header>
+
+<div class="container">
+    @using (Html.BeginForm("Post", "BackendPost", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.PostId)
+
+        <div class="form-floating mb-5">
+            @Html.TextBoxFor(model => model.Titolo, new { @class = "form-control" })
+            @Html.LabelFor(model => model.Titolo, "Titolo del post", new { @class = "col-md-2 control-label" })
+            @Html.ValidationMessageFor(model => model.Titolo)
+        </div>
+
+        <div class="form-floating mb-5">
+            @Html.TextAreaFor(model => model.Contenuto, new { @class = "form-control" })
+            @Html.LabelFor(model => model.Contenuto, "Contenuto del post", new { @class = "col-md-2 control-label" })
+            @Html.ValidationMessageFor(model => model.Contenuto)
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-primary" value="Crea" />
+        </div>
+    }
+</div>

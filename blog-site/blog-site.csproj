@@ -104,9 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BusinessLogic\JsonDeserializer.cs" />
-    <Compile Include="BusinessLogic\JsonReader.cs" />
+    <Compile Include="Controllers\BackendPostController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -114,6 +114,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CommentListModel.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\PostDetailModel.cs" />
     <Compile Include="Models\PostListModel.cs" />
     <Compile Include="Models\PostModel.cs" />
@@ -140,6 +141,10 @@
     <Content Include="Views\User\List.cshtml" />
     <Content Include="Views\User\Detail.cshtml" />
     <Content Include="Views\Post\SinglePost.cshtml" />
+    <Content Include="Views\BackendPost\List.cshtml" />
+    <Content Include="Views\BackendPost\Detail.cshtml" />
+    <Content Include="Views\BackendPost\Add.cshtml" />
+    <Content Include="Views\BackendPost\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -14,29 +14,48 @@ namespace blog_site.Controllers
         // GET: User
         public ActionResult List()
         {
+            //
+            // CON SELECT
+            //
             UserListModel model = new UserListModel();
 
-            foreach (User user in new UserService().GetAll())
+            model.Users = new UserService().GetAll().Select(oldModel => new UserModel()
             {
-                List<Post> posts = new PostService().GetAll();
+                UserId = oldModel.Id,
+                Username = oldModel.Username,
+                Nome = oldModel.Name
 
-                UserModel tmpModel = new UserModel();
-
-                tmpModel.UserId = user.Id;
-                tmpModel.Nome = user.Name;
-                tmpModel.Username = user.Username;
-                tmpModel.Email = user.Email;
-                tmpModel.Posts = posts.Where(x => x.UserId == user.Id).Select(tmpPost => new PostModel()
-                    {
-                        UserId = tmpPost.UserId,
-                        Titolo = tmpPost.Title
-                    }).ToList();
-
-                model.Users.Add(tmpModel);
-
-            }
+            }).ToList();
 
             return View(model);
+
+            // ----------------------------------------------------------------------------------------
+            //
+            // CON IL FOREACH
+            //
+            // UserListModel model = new UserListModel();
+            //
+            //foreach (User user in new UserService().GetAll())
+            //{
+            //    List<Post> posts = new PostService().GetAll();
+
+            //    UserModel tmpModel = new UserModel();
+
+            //    tmpModel.UserId = user.Id;
+            //    tmpModel.Nome = user.Name;
+            //    tmpModel.Username = user.Username;
+            //    tmpModel.Email = user.Email;
+            //    tmpModel.Posts = posts.Where(x => x.UserId == user.Id).Select(tmpPost => new PostModel()
+            //        {
+            //            UserId = tmpPost.UserId,
+            //            Titolo = tmpPost.Title
+            //        }).ToList();
+
+            //    model.Users.Add(tmpModel);
+
+            //}
+            //
+            // return View(model);
         }
 
         public ActionResult Detail(int id)
@@ -65,14 +84,6 @@ namespace blog_site.Controllers
                 Contenuto = tmpPost.Body
 
             }).ToList();
-
-            //model.User = new UserService().GetAll().FirstOrDefault(x => x.Id == id).Select(tmpUser => new UserModel()
-            //{
-            //    UserId = tmpUser.Id,
-
-            //});
-
-            //model.Posts = new PostService().GetAll().FindAll(y => y.UserId == id);
 
             return View(model);
         }

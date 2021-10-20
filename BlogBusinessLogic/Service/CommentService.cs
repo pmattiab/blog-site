@@ -13,7 +13,7 @@ namespace BlogBusinessLogic.Service
     {
         private EnumFonte fonte;
 
-        public CommentService(EnumFonte _fonte = EnumFonte.Json)
+        public CommentService(EnumFonte _fonte = EnumFonte.WebService)
         {
             this.fonte = _fonte;
         }
@@ -25,17 +25,20 @@ namespace BlogBusinessLogic.Service
 
             switch (this.fonte)
             {
+                case EnumFonte.WebService:
+                    resList = this.ListFromWebService();
+                    break;
+
                 case EnumFonte.Json:
                     resList = this.ListFromJson();
                     break;
 
                 case EnumFonte.Databse:
-                case EnumFonte.WebService:
-                    throw new Exception("funzione non implemtata");
+                    throw new Exception("funzione non implementata");
                     break;
 
                 default:
-                    resList = ListFromJson();
+                    resList = this.ListFromWebService();
                     break;
             }
 
@@ -44,11 +47,25 @@ namespace BlogBusinessLogic.Service
             return resList;
         }
 
+        public Comment GetSingleComment(int id)
+        {
+            return new CommentService().GetAll().FirstOrDefault(x => x.Id == id);
+        }
 
         private List<Comment> ListFromJson()
         {
             string jsonPath = "~/Data/comments.json";
-            string jsonContent = new JsonReader().ReadJson(jsonPath);
+            string jsonContent = new JsonReader().ReadJsonFromFile(jsonPath);
+            List<Comment> result = new JsonDeserializer().DeserializeJson<List<Comment>>(jsonContent);
+
+            return result;
+        }
+
+        private List<Comment> ListFromWebService()
+        {
+            //string jsonUrl = "https://jsonplaceholder.typicode.com/comments";
+            string jsonUrl = "http://localhost:3000/comments";
+            string jsonContent = new JsonReader().ReadJsonWebService(jsonUrl);
             List<Comment> result = new JsonDeserializer().DeserializeJson<List<Comment>>(jsonContent);
 
             return result;

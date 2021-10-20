@@ -1,0 +1,34 @@
+﻿@model blog_site.Models.PostDetailModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<!-- Page Header-->
+<header class="masthead" style="background-color:gray; padding:45px;">
+</header>
+
+<div class="container">
+    @using (Html.BeginForm("Edit", "BackendPost", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.Post.PostId)
+
+        <div class="form-floating mb-5">
+            @Html.TextBoxFor(model => model.Post.Titolo, new { @class = "form-control" })
+            @Html.LabelFor(model => model.Post.Titolo, "Titolo del post", new { @class = "col-md-2 control-label" })
+            @Html.ValidationMessageFor(model => model.Post.Titolo)
+        </div>
+
+        <div class="form-floating mb-5">
+            @Html.TextAreaFor(model => model.Post.Contenuto, new { @class = "form-control" })
+            @Html.LabelFor(model => model.Post.Contenuto, "Contenuto del post", new { @class = "col-md-2 control-label" })
+            @Html.ValidationMessageFor(model => model.Post.Contenuto)
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-primary" value="Salva" />
+        </div>
+    }
+</div>

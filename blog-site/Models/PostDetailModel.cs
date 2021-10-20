@@ -9,8 +9,8 @@ namespace blog_site.Models
 {
     public class PostDetailModel
     {
-        public Post Post { get; set; } = new Post();
-        public User User { get; set; } = new User();
+        public PostModel Post { get; set; } = new PostModel();
+        public UserModel User { get; set; } = new UserModel();
         public List<Comment> Comments { get; set; }
 
     }
