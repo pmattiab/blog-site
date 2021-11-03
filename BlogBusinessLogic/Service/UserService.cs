@@ -12,12 +12,15 @@ namespace BlogBusinessLogic.Service
     public class UserService
     {
         private EnumFonte fonte;
+        private string jsonUrl;
+        private string jsonPath;
 
         public UserService(EnumFonte _fonte = EnumFonte.WebService)
         {
             this.fonte = _fonte;
+            this.jsonUrl = "http://localhost:3000/users";
+            this.jsonPath = "https://jsonplaceholder.typicode.com/users";
         }
-
 
         public List<User> GetAll()
         {
@@ -49,14 +52,13 @@ namespace BlogBusinessLogic.Service
 
         public User GetSingleUser(int id)
         {
-            return new UserService().GetAll().FirstOrDefault(x => x.Id == id);
+            return this.GetAll().FirstOrDefault(x => x.Id == id);
         }
-
 
         private List<User> ListFromJson()
         {
-            string jsonPath = "~/Data/users.json";
-            string jsonContent = new JsonReader().ReadJsonFromFile(jsonPath);
+            string _jsonPath = this.jsonPath;
+            string jsonContent = new JsonReader().ReadJsonFromFile(_jsonPath);
             List<User> result = new JsonDeserializer().DeserializeJson<List<User>>(jsonContent);
 
             return result;
@@ -64,9 +66,8 @@ namespace BlogBusinessLogic.Service
 
         private List<User> ListFromWebService()
         {
-            //string jsonUrl = "https://jsonplaceholder.typicode.com/users";
-            string jsonUrl = "http://localhost:3000/users";
-            string jsonContent = new JsonReader().ReadJsonWebService(jsonUrl);
+            string _jsonUrl = this.jsonUrl;
+            string jsonContent = new JsonReader().ReadJsonWebService(_jsonUrl);
             List<User> result = new JsonDeserializer().DeserializeJson<List<User>>(jsonContent);
 
             return result;

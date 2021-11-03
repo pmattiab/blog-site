@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "UploadFile";
+}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('https://media.istockphoto.com/photos/cloud-computing-picture-id963131214?k=20&m=963131214&s=612x612&w=0&h=PFKzkJn0GTrdO-gS2fI14VFs-dR-fE6SIgJy_tEQR28=')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Upload File</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                @Html.TextBox("file", "", new { type = "file" }) <br />
+                <input type="submit" value="Upload" />
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+</main>

@@ -1,5 +1,4 @@
-﻿@model blog_site.Models.PostListModel
-
+﻿@model blog_site.Models.BackendPostListModel
 @{
     ViewBag.Title = "List";
 }
@@ -10,28 +9,35 @@
 
 <!-- Main Content-->
 <div class="container">
+
+    <div class="mb-4">
+        <a href=@Url.Action("Add", "BackendPost") class="btn btn-primary">
+            + Crea Post
+        </a>
+    </div>
+
     <div class="row text-capitalize" style="font-size: 13px;">
-        <table class="table table-striped text-center">
+        <table class="table table-bordered table-hover table-sm text-center" id="posts-table">
             <thead>
-                <tr>
-                    <th scope="col">Post id</th>
-                    <th scope="col">Titolo</th>
-                    <th scope="col">Autore</th>
-                    <th scope="col">Azioni</th>
+                <tr class="table-active">
+                    <th scope="col"><h6>Post id</h6></th>
+                    <th scope="col"><h6>Titolo</h6></th>
+                    <th scope="col"><h6>Autore</h6></th>
+                    <th scope="col"><h6>Azioni</h6></th>
                 </tr>
 
             </thead>
             <tbody>
                 @foreach (var post in Model.Posts)
                 {
-                    <tr>
+                    <tr> 
                         <td>@post.PostId</td>
                         <td><b>@post.Titolo</b></td>
                         <td>@post.PostUser.Username</td>
                         <td>
-                            <a href=@Url.Action("Detail", "BackendPost", new { id = post.PostId}) class="btn btn-primary" style="font-size:12px; font-weight:500; padding:5px 10px">Dettagli</a>
-                            <a href=@Url.Action("Edit", "BackendPost", new { id = post.PostId}) class="btn btn-success" style="font-size:12px; font-weight:500; padding:5px 10px">Modifica</a>
-                            <a href=@Url.Action("Delete", "BackendPost", new { id = post.PostId}) class="btn btn-danger" style="font-size:12px; font-weight:500; padding:5px 10px">Elimina</a>
+                            <a href=@Url.Action("Detail", "BackendPost", new { id = post.PostId}) class="btn btn-primary">Dettagli</a>
+                            <a href=@Url.Action("Edit", "BackendPost", new { id = post.PostId}) class="btn btn-success">Modifica</a>
+                            <a href=@Url.Action("Delete", "BackendPost", new { id = post.PostId}) class="btn btn-danger">Elimina</a>
                         </td>
                     </tr>
                 }
@@ -39,3 +45,12 @@
         </table>
     </div>
 </div>
+
+<link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet"/>
+
+@*@section scripts{
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script>
+
+    </script>
+    }*@

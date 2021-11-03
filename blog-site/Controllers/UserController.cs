@@ -12,6 +12,16 @@ namespace blog_site.Controllers
     public class UserController : Controller
     {
         // GET: User
+
+        private PostService servicePost;
+        private UserService serviceUser;
+
+        public UserController()
+        {
+            servicePost = new PostService(BlogBusinessLogic.Types.EnumFonte.WebService);
+            serviceUser = new UserService(BlogBusinessLogic.Types.EnumFonte.WebService);
+        }
+
         public ActionResult List()
         {
             //
@@ -19,7 +29,7 @@ namespace blog_site.Controllers
             //
             UserListModel model = new UserListModel();
 
-            model.Users = new UserService().GetAll().Select(oldModel => new UserModel()
+            model.Users = serviceUser.GetAll().Select(oldModel => new UserModel()
             {
                 UserId = oldModel.Id,
                 Username = oldModel.Username,
@@ -35,9 +45,9 @@ namespace blog_site.Controllers
             //
             // UserListModel model = new UserListModel();
             //
-            //foreach (User user in new UserService().GetAll())
+            //foreach (User user in new serviceUser.GetAll())
             //{
-            //    List<Post> posts = new PostService().GetAll();
+            //    List<Post> posts = new servicePost.GetAll();
 
             //    UserModel tmpModel = new UserModel();
 
@@ -62,7 +72,7 @@ namespace blog_site.Controllers
         {
             UserDetailModel model = new UserDetailModel();
 
-            model.User = new UserService().GetAll().Where(x => x.Id == id).Select(tmpUser => new UserModel()
+            model.User = serviceUser.GetAll().Where(x => x.Id == id).Select(tmpUser => new UserModel()
             {
                 UserId = tmpUser.Id,
                 Nome = tmpUser.Name,
@@ -76,9 +86,9 @@ namespace blog_site.Controllers
 
             }).FirstOrDefault();
 
-            model.Posts = new PostService().GetAll().Where(x => x.UserId == id).Select(tmpPost => new PostModel()
+            model.Posts = servicePost.GetAll().Where(x => x.UserId == id).Select(tmpPost => new PostModel()
             {
-                PostId = tmpPost.Id,
+                PostId = tmpPost.id,
                 UserId = tmpPost.UserId,
                 Titolo = tmpPost.Title,
                 Contenuto = tmpPost.Body

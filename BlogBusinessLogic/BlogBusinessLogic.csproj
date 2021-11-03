@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Helper\JsonDeserializer.cs" />
     <Compile Include="Helper\JsonReader.cs" />
+    <Compile Include="Helper\JsonSerializer.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\User.cs" />

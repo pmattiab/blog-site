@@ -12,12 +12,15 @@ namespace BlogBusinessLogic.Service
     public class CommentService
     {
         private EnumFonte fonte;
+        private string jsonUrl;
+        private string jsonPath;
 
         public CommentService(EnumFonte _fonte = EnumFonte.WebService)
         {
             this.fonte = _fonte;
+            this.jsonUrl = "http://localhost:3000/comments";
+            this.jsonPath = "https://jsonplaceholder.typicode.com/comments";
         }
-
 
         public List<Comment> GetAll()
         {
@@ -49,13 +52,13 @@ namespace BlogBusinessLogic.Service
 
         public Comment GetSingleComment(int id)
         {
-            return new CommentService().GetAll().FirstOrDefault(x => x.Id == id);
+            return this.GetAll().FirstOrDefault(x => x.Id == id);
         }
 
         private List<Comment> ListFromJson()
         {
-            string jsonPath = "~/Data/comments.json";
-            string jsonContent = new JsonReader().ReadJsonFromFile(jsonPath);
+            string _jsonPath = this.jsonPath;
+            string jsonContent = new JsonReader().ReadJsonFromFile(_jsonPath);
             List<Comment> result = new JsonDeserializer().DeserializeJson<List<Comment>>(jsonContent);
 
             return result;
@@ -63,9 +66,8 @@ namespace BlogBusinessLogic.Service
 
         private List<Comment> ListFromWebService()
         {
-            //string jsonUrl = "https://jsonplaceholder.typicode.com/comments";
-            string jsonUrl = "http://localhost:3000/comments";
-            string jsonContent = new JsonReader().ReadJsonWebService(jsonUrl);
+            string _jsonUrl = this.jsonUrl;
+            string jsonContent = new JsonReader().ReadJsonWebService(_jsonUrl);
             List<Comment> result = new JsonDeserializer().DeserializeJson<List<Comment>>(jsonContent);
 
             return result;
